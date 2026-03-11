@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>receipt-splitter tests</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%238a5a44'/%3E%3Cpath d='M18 18h28v8H18zm0 12h28v6H18zm0 10h20v6H18z' fill='%23fffaf5'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f3ee;
+      --surface: #fffdf9;
+      --text: #201a17;
+      --border: #d7b89e;
+      --success: #1d6b45;
+      --error: #b8402a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Manrope", sans-serif;
+    }
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      gap: 20px;
+    }
+    h1 {
+      margin: 0;
+      font-family: "Fraunces", serif;
+      font-size: 2.2rem;
+      letter-spacing: -0.04em;
+    }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .result {
+      padding: 12px 14px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border: 1px solid var(--border);
+    }
+    .pass {
+      background: #eef7f2;
+      color: var(--success);
+    }
+    .fail {
+      background: #fbefec;
+      color: var(--error);
+    }
+    code {
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="panel">
+      <h1>receipt-splitter tests</h1>
+      <p>Pure browser assertions for the calculation engine and app wiring.</p>
+    </section>
+    <section class="panel">
+      <div id="results"></div>
+      <div id="summary"></div>
+    </section>
+    <div id="app" hidden></div>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script>
+    (function () {
+      var resultsEl = document.getElementById("results");
+      var summaryEl = document.getElementById("summary");
+      var api = window.ReceiptSplitterApp;
+      var total = 0;
+      var passed = 0;
+
+      function renderResult(pass, name, details) {
+        var node = document.createElement("div");
+        node.className = "result " + (pass ? "pass" : "fail");
+        node.innerHTML = "<strong>" + (pass ? "PASS" : "FAIL") + "</strong> " + name + (details ? "<br><code>" + details + "</code>" : "");
+        resultsEl.appendChild(node);
+      }
+
+      function test(name, fn) {
+        total += 1;
+        try {
+          fn();
+          passed += 1;
+          renderResult(true, name);
+        } catch (error) {
+          renderResult(false, name, error.message);
+        }
+      }
+
+      function assert(condition, message) {
+        if (!condition) {
+          throw new Error(message || "Assertion failed");
+        }
+      }
+
+      function equal(actual, expected, message) {
+        if (actual !== expected) {
+          throw new Error((message || "Values differ") + " | expected: " + expected + ", actual: " + actual);
+        }
+      }
+
+      function makeStorage() {
+        var memory = {};
+        return api.createStorageWrapper({
+          setItem: function (key, value) { memory[key] = value; },
+          getItem: function (key) { return Object.prototype.hasOwnProperty.call(memory, key) ? memory[key] : null; },
+          removeItem: function (key) { delete memory[key]; }
+        });
+      }
+
+      function buildSampleBill() {
+        var bill = api.createEmptyBill();
+        bill.title = "Test dinner";
+        bill.subtotal = "60.00";
+        bill.tax = "6.00";
+        bill.tip = "12.00";
+        var alex = api.createDiner("Alex");
+        var sam = api.createDiner("Sam");
+        bill.diners.push(alex, sam);
+        var pasta = api.createItem();
+        pasta.name = "Pasta";
+        pasta.unitPrice = "24.00";
+        pasta.quantity = "1";
+        pasta.assignedDinerIds = [alex.id];
+        var wings = api.createItem();
+        wings.name = "Wings";
+        wings.unitPrice = "36.00";
+        wings.quantity = "1";
+        wings.assignedDinerIds = [alex.id, sam.id];
+        bill.items.push(pasta, wings);
+        return { bill: bill };
+      }
+
+      test("Bill model initializes empty with zeroed totals", function () {
+        var bill = api.createEmptyBill();
+        equal(bill.diners.length, 0, "Expected no diners");
+        equal(bill.items.length, 0, "Expected no items");
+        equal(bill.subtotal, "", "Subtotal should start empty");
+        equal(bill.tax, "", "Tax should start empty");
+        equal(bill.tip, "", "Tip should start empty");
+      });
+
+      test("Adding a diner updates state and rendered list", function () {
+        var storage = makeStorage();
+        var app = api.initReceiptSplitter({ containerId: "app", storage: storage });
+        app.state.diners.push(api.createDiner("Jordan"));
+        app.save();
+        app.render();
+        equal(app.state.diners.length, 1, "State should contain one diner");
+        assert(document.querySelector("[data-diner-field='name']"), "Rendered diner input not found");
+      });
+
+      test("Single diner item produces correct subtotal", function () {
+        var result = api.computeBill(buildSampleBill().bill);
+        equal(result.people[0].itemSubtotalCents, 4200, "Alex should have 42.00 of assigned items");
+      });
+
+      test("Shared item splitting divides item evenly", function () {
+        var result = api.computeBill(buildSampleBill().bill);
+        equal(result.people[0].itemSubtotalCents, 4200, "Alex should include half the shared item");
+        equal(result.people[1].itemSubtotalCents, 1800, "Sam should include half the shared item");
+      });
+
+      test("Proportional tax allocation matches expected cents", function () {
+        var result = api.computeBill(buildSampleBill().bill);
+        equal(result.people[0].taxShareCents, 420, "Alex tax share should be 4.20");
+        equal(result.people[1].taxShareCents, 180, "Sam tax share should be 1.80");
+      });
+
+      test("Proportional tip allocation matches expected cents", function () {
+        var result = api.computeBill(buildSampleBill().bill);
+        equal(result.people[0].tipShareCents, 840, "Alex tip share should be 8.40");
+        equal(result.people[1].tipShareCents, 360, "Sam tip share should be 3.60");
+      });
+
+      test("Final per-person totals sum to subtotal plus tax plus tip", function () {
+        var result = api.computeBill(buildSampleBill().bill);
+        equal(result.totalOwedCents, 7800, "Grand total should equal 78.00");
+      });
+
+      test("Rounding reconciliation resolves one-cent remainder", function () {
+        var bill = api.createEmptyBill();
+        bill.subtotal = "10.00";
+        bill.tax = "0.01";
+        var alex = api.createDiner("Alex");
+        var sam = api.createDiner("Sam");
+        var jo = api.createDiner("Jo");
+        bill.diners.push(alex, sam, jo);
+        [alex, sam, jo].forEach(function (diner, index) {
+          var item = api.createItem();
+          item.name = diner.name;
+          item.unitPrice = index === 2 ? "3.34" : "3.33";
+          item.quantity = "1";
+          item.assignedDinerIds = [diner.id];
+          bill.items.push(item);
+        });
+        var result = api.computeBill(bill);
+        equal(result.taxCents, 1, "Expected one cent of tax");
+        equal(result.totalOwedCents, 1001, "Allocated total should remain exact");
+      });
+
+      test("localStorage save and load round-trip preserves the bill", function () {
+        var storage = makeStorage();
+        var fixture = buildSampleBill();
+        api.saveBillToStorage(storage, fixture.bill);
+        var loaded = api.loadBillFromStorage(storage);
+        equal(loaded.title, "Test dinner", "Expected bill title to persist");
+        equal(loaded.diners.length, 2, "Expected diners to persist");
+        equal(loaded.items.length, 2, "Expected items to persist");
+      });
+
+      test("Invalid item rows without assigned diners are flagged and excluded", function () {
+        var bill = api.createEmptyBill();
+        bill.subtotal = "12.00";
+        var alex = api.createDiner("Alex");
+        bill.diners.push(alex);
+        var item = api.createItem();
+        item.name = "Soup";
+        item.unitPrice = "12.00";
+        item.quantity = "1";
+        item.assignedDinerIds = [];
+        bill.items.push(item);
+        var result = api.computeBill(bill);
+        assert(result.itemErrors[item.id].length > 0, "Expected item errors");
+        equal(result.totalOwedCents, 0, "Invalid item should be excluded from totals");
+      });
+
+      test("Copy summary output is non-empty and contains diner totals", function () {
+        var result = api.computeBill(buildSampleBill().bill);
+        var summary = api.buildSummaryText(result);
+        assert(summary.length > 10, "Summary should not be empty");
+        assert(summary.indexOf("Alex") >= 0, "Summary should mention Alex");
+        assert(summary.indexOf("$54.60") >= 0, "Summary should include a formatted total");
+      });
+
+      test("Reset clears the active bill and restores defaults", function () {
+        var storage = makeStorage();
+        var fixture = buildSampleBill();
+        api.saveBillToStorage(storage, fixture.bill);
+        api.clearBillFromStorage(storage);
+        var cleared = api.loadBillFromStorage(storage);
+        equal(cleared.diners.length, 0, "Expected diners to reset");
+        equal(cleared.items.length, 0, "Expected items to reset");
+      });
+
+      summaryEl.innerHTML = "<strong>" + passed + "</strong> of <strong>" + total + "</strong> tests passed.";
+    })();
+  </script>
+</body>
+</html>
