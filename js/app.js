@@ -727,8 +727,9 @@
       '<div class="app-shell">' +
       '  <div class="page-header">' +
       '    <div>' +
-      '      <h1>receipt-splitter</h1>' +
-      '      <p>Enter the bill, assign each line item, and split tax and tip proportionally without leaving the browser.</p>' +
+      '      <p class="eyebrow">Northline Finance</p>' +
+      '      <h1>Split Receipt</h1>' +
+      '      <p>Assign each line item, split tax and tip proportionally, and keep the full bill workflow local to this browser.</p>' +
       '    </div>' +
       '    <div class="page-actions">' +
       '      <button type="button" class="button-secondary" data-action="copy-summary">Copy summary</button>' +

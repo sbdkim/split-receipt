@@ -3,27 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>receipt-splitter tests</title>
+  <title>Split Receipt Tests | Northline</title>
   <link rel="icon" type="image/png" href="./favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/tokens.css">
   <style>
-    :root {
-      --bg: #f7f3ee;
-      --surface: #fffdf9;
-      --text: #201a17;
-      --border: #d7b89e;
-      --success: #1d6b45;
-      --error: #b8402a;
-    }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       padding: 24px;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Manrope", sans-serif;
+      background: var(--color-surface-base);
+      color: var(--color-text-primary);
+      font-family: var(--font-body);
     }
     main {
       max-width: 960px;
@@ -33,13 +26,13 @@
     }
     h1 {
       margin: 0;
-      font-family: "Fraunces", serif;
+      font-family: var(--font-display);
       font-size: 2.2rem;
       letter-spacing: -0.04em;
     }
     .panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: var(--color-surface-raised);
+      border: 1px solid var(--color-border-default);
       border-radius: 10px;
       padding: 20px;
     }
@@ -47,25 +40,25 @@
       padding: 12px 14px;
       border-radius: 8px;
       margin-bottom: 10px;
-      border: 1px solid var(--border);
+      border: 1px solid var(--color-border-default);
     }
     .pass {
-      background: #eef7f2;
-      color: var(--success);
+      background: color-mix(in srgb, var(--color-status-success) 10%, white);
+      color: var(--color-status-success);
     }
     .fail {
-      background: #fbefec;
-      color: var(--error);
+      background: color-mix(in srgb, var(--color-status-error) 10%, white);
+      color: var(--color-status-error);
     }
     code {
-      font-family: Consolas, monospace;
+      font-family: var(--font-mono);
     }
   </style>
 </head>
 <body>
   <main>
     <section class="panel">
-      <h1>receipt-splitter tests</h1>
+      <h1>Split Receipt tests</h1>
       <p>Pure browser assertions for the calculation engine and app wiring.</p>
     </section>
     <section class="panel">
