@@ -203,7 +203,12 @@ a {
   border: 1px solid var(--color-border-default);
   padding: 10px 14px;
   font-weight: 700;
-  transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease,
+    border-color 120ms ease,
+    transform 120ms ease,
+    box-shadow 120ms ease;
 }
 
 .button {
@@ -220,6 +225,12 @@ a {
 .button-secondary {
   background: var(--color-surface-raised);
   color: var(--color-text-primary);
+}
+
+.button:hover,
+.button-secondary:hover,
+.button-ghost:hover {
+  transform: translateY(-1px);
 }
 
 .button-secondary:hover,
@@ -247,6 +258,17 @@ a {
   border-radius: var(--radius-lg);
   color: var(--color-text-secondary);
   background: color-mix(in srgb, var(--color-surface-raised) 86%, white);
+}
+
+.empty-title {
+  margin: 0 0 var(--space-2);
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  font-size: var(--font-size-md);
+}
+
+.empty-copy {
+  margin: 0;
 }
 
 .list {
@@ -506,5 +528,25 @@ a {
 
   .sticky-total strong {
     font-size: 1.05rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell {
+    animation: none;
+  }
+
+  .button,
+  .button-secondary,
+  .button-ghost,
+  .field input,
+  .field textarea {
+    transition: none;
+  }
+
+  .button:hover,
+  .button-secondary:hover,
+  .button-ghost:hover {
+    transform: none;
   }
 }

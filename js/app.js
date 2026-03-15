@@ -538,7 +538,7 @@
         '  </div>' +
         '  <div class="button-row"><button type="button" class="button-ghost" data-action="remove-diner" data-diner-id="' + escapeHtml(diner.id) + '">Remove</button></div>' +
         '</div>';
-    }).join("") : '<div class="empty-state">Add diners first so each item can be assigned to the right people.</div>';
+    }).join("") : '<div class="empty-state"><p class="empty-title">No diners yet</p><p class="empty-copy">Add diners first so each item can be assigned to the right people.</p></div>';
 
     return '' +
       '<section class="panel">' +
@@ -555,7 +555,7 @@
 
   function renderAssignmentChips(state, item) {
     if (!state.diners.length) {
-      return '<div class="empty-state">Add diners to unlock item assignment.</div>';
+      return '<div class="empty-state"><p class="empty-title">Assign diners first</p><p class="empty-copy">Add diners to unlock item assignment.</p></div>';
     }
 
     return '<div class="check-grid">' + state.diners.map(function (diner) {
@@ -603,7 +603,7 @@
         '    <div>' + (errors.length ? '<span class="error-text">' + escapeHtml(errors.join(" ")) + '</span>' : '<span class="status-inline">Shared items split evenly before tax and tip.</span>') + '</div>' +
         '  </div>' +
         '</div>';
-    }).join("") : '<div class="empty-state">Add items and assign them to diners. Shared items can be checked for multiple people.</div>';
+    }).join("") : '<div class="empty-state"><p class="empty-title">No items yet</p><p class="empty-copy">Add items and assign them to diners. Shared items can be checked for multiple people.</p></div>';
 
     return '' +
       '<section class="panel">' +
