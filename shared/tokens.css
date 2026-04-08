@@ -72,6 +72,19 @@
   --shadow-md: 0 4px 12px rgba(31, 41, 51, 0.12);
   --shadow-lg: 0 8px 24px rgba(31, 41, 51, 0.16);
 
+
+  /* Shared product shell */
+  --northline-shell-max-width: 1360px;
+  --northline-shell-padding: clamp(1rem, 2.4vw, 1.75rem);
+  --northline-shell-gap: clamp(1rem, 2vw, 1.5rem);
+  --northline-shell-radius: calc(var(--radius-xl) + var(--space-2));
+  --northline-shell-padding-block: clamp(1.5rem, 3vw, 2rem);
+  --northline-shell-padding-inline: clamp(1.25rem, 2.8vw, 2rem);
+  --northline-title-size: clamp(2.45rem, 4.7vw, 3.7rem);
+  --northline-title-max-width: 11ch;
+  --northline-subtitle-size: clamp(1rem, 1.8vw, 1.14rem);
+  --northline-shell-surface: color-mix(in srgb, var(--color-surface-raised) 92%, transparent);
+
   /* Motion */
   --duration-fast: 120ms;
   --duration-normal: 220ms;

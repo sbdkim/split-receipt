@@ -32,9 +32,9 @@ a {
 }
 
 .app-shell {
-  max-width: 1380px;
+  width: min(var(--northline-shell-max-width), calc(100% - (var(--northline-shell-padding) * 2)));
   margin: 0 auto;
-  padding: 32px 20px 100px;
+  padding: var(--northline-shell-padding) 0 100px;
   animation: fade-in 320ms ease;
 }
 
@@ -42,8 +42,13 @@ a {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 1rem;
+  gap: var(--northline-shell-gap);
   margin-bottom: 24px;
+  padding: var(--northline-shell-padding-block) var(--northline-shell-padding-inline);
+  border: 1px solid var(--color-border-subtle-ui);
+  border-radius: var(--northline-shell-radius);
+  background: var(--northline-shell-surface);
+  box-shadow: var(--shadow-lg);
 }
 
 .eyebrow {
@@ -58,17 +63,18 @@ a {
 .page-header h1 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  font-size: var(--northline-title-size);
   font-weight: 700;
   letter-spacing: -0.04em;
-  line-height: 0.95;
+  line-height: 0.98;
+  max-width: var(--northline-title-max-width);
 }
 
 .page-header p {
   max-width: 42rem;
   margin: 10px 0 0;
   color: var(--color-text-secondary);
-  font-size: 0.98rem;
+  font-size: var(--northline-subtitle-size);
 }
 
 .page-actions {

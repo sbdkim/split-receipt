@@ -20,7 +20,7 @@
   }
 
   function getPreferredTheme() {
-    return media && media.matches ? "dark" : "light";
+    return "light";
   }
 
   function updateThemeColor(theme) {
