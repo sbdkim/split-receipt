@@ -3,7 +3,7 @@
 A browser-based bill splitting workspace for assigning items and distributing tax and tip fairly across a group.
 
 ## Live Demo
-[https://sbdkim.github.io/split-receipt](https://sbdkim.github.io/split-receipt)
+[https://shinbum-split-receipt.vercel.app/](https://shinbum-split-receipt.vercel.app/)
 
 ## Key Features
 - Manual bill setup with subtotal, tax, tip, notes, and currency symbol
@@ -25,8 +25,9 @@ Open `index.html` directly in a browser, or serve the repo with a lightweight st
 Open `tests.html` in a browser to run the in-browser regression checks.
 
 ## Deployment Notes
-- The repo is configured for GitHub Pages deployment from `main` through GitHub Actions.
-- Keep file references relative so the same files work locally and when published.
+- Production deploys are served from Vercel at `https://shinbum-split-receipt.vercel.app/`.
+- Pushes to `main` trigger automatic production deploys through the Vercel Git integration.
+- Keep file references relative so the same files work locally and when published on Vercel.
 
 ## Project Layout
 - `index.html` main application entrypoint
