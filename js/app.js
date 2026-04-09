@@ -758,6 +758,10 @@
       '    <div><span>Current grand total</span><strong>' + escapeHtml(formatMoney(result.grandTotalCents, result.currencySymbol)) + '</strong></div>' +
       '    <button type="button" class="button-secondary" data-action="copy-summary">Copy summary</button>' +
       '  </div>' +
+      '  <footer class="page-footer">' +
+      '    <p>Northline receipt workflow</p>' +
+      '    <p>All calculations stay in this browser and save locally on this device.</p>' +
+      '  </footer>' +
       '</div>';
     this.restoreFocus();
   };

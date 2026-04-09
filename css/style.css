@@ -43,7 +43,7 @@ a {
   grid-template-columns: minmax(0, 1.7fr) minmax(260px, 0.95fr);
   align-items: end;
   gap: var(--northline-shell-gap);
-  margin-bottom: 24px;
+  margin-bottom: var(--space-8);
   padding: var(--northline-shell-padding-block) var(--northline-shell-padding-inline);
   border: 1px solid var(--color-border-subtle-ui);
   border-radius: var(--northline-shell-radius);
@@ -70,16 +70,17 @@ a {
   max-width: var(--northline-title-max-width);
 }
 
-.page-header p {
-  max-width: 42rem;
-  margin: 10px 0 0;
+.hero-copy {
+  max-width: 58ch;
+  margin: 16px 0 0;
   color: var(--color-text-secondary);
   font-size: var(--northline-subtitle-size);
+  line-height: 1.6;
 }
 
 .hero-note {
   display: grid;
-  gap: 12px;
+  gap: var(--space-3);
   padding: var(--space-5);
   border-radius: calc(var(--radius-lg) + var(--space-2));
   background: linear-gradient(180deg, var(--color-brand-secondary) 0%, var(--color-brand-primary) 100%);
@@ -98,6 +99,7 @@ a {
 .hero-note strong {
   display: block;
   font-size: 1.05rem;
+  margin-bottom: 10px;
 }
 
 .hero-note p:last-child {
@@ -486,6 +488,22 @@ a {
   font-size: 0.84rem;
 }
 
+.page-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: var(--space-8);
+  padding: 18px 2px 0;
+  border-top: 1px solid var(--color-border-subtle-ui);
+  color: var(--color-text-secondary);
+  font-size: 0.84rem;
+}
+
+.page-footer p {
+  margin: 0;
+}
+
 .error-text {
   color: var(--color-status-error);
   font-size: 0.84rem;
@@ -514,6 +532,10 @@ a {
 
   .page-actions {
     justify-content: flex-start;
+  }
+
+  .page-footer {
+    flex-direction: column;
   }
 }
 
