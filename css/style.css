@@ -39,9 +39,9 @@ a {
 }
 
 .page-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(260px, 0.95fr);
+  align-items: end;
   gap: var(--northline-shell-gap);
   margin-bottom: 24px;
   padding: var(--northline-shell-padding-block) var(--northline-shell-padding-inline);
@@ -77,11 +77,40 @@ a {
   font-size: var(--northline-subtitle-size);
 }
 
+.hero-note {
+  display: grid;
+  gap: 12px;
+  padding: var(--space-5);
+  border-radius: calc(var(--radius-lg) + var(--space-2));
+  background: linear-gradient(180deg, var(--color-brand-secondary) 0%, var(--color-brand-primary) 100%);
+  color: var(--color-text-inverse);
+}
+
+.hero-note-label {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  color: color-mix(in srgb, var(--color-text-inverse) 82%, transparent);
+}
+
+.hero-note strong {
+  display: block;
+  font-size: 1.05rem;
+}
+
+.hero-note p:last-child {
+  margin: 0;
+  color: color-mix(in srgb, var(--color-text-inverse) 88%, transparent);
+  line-height: 1.55;
+}
+
 .page-actions {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .layout {
@@ -244,6 +273,7 @@ a {
 .button-secondary.is-active {
   background: color-mix(in srgb, var(--color-brand-primary) 12%, var(--color-surface-raised));
   border-color: color-mix(in srgb, var(--color-brand-primary) 28%, var(--color-surface-raised));
+  color: var(--color-text-primary);
 }
 
 .button-ghost {
@@ -479,8 +509,7 @@ a {
   }
 
   .page-header {
-    align-items: flex-start;
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 
   .page-actions {
