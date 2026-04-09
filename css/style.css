@@ -609,3 +609,116 @@ a {
     transform: none;
   }
 }
+/* NORTHLINE HERO CONTRACT LOCK (track-budget baseline) */
+:where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .hero-panel {
+  display: grid !important;
+  grid-template-columns: minmax(0, 2fr) minmax(240px, 0.9fr) !important;
+  align-items: end !important;
+  gap: var(--northline-shell-gap, clamp(1rem, 2.2vw, 1.6rem)) !important;
+  margin: 0 0 32px !important;
+  padding: var(--northline-shell-padding-block, clamp(1.5rem, 3vw, 2rem)) var(--northline-shell-padding-inline, clamp(1.25rem, 2.8vw, 2rem)) !important;
+  border: 1px solid var(--color-border-subtle-ui, var(--color-border-subtle)) !important;
+  border-radius: var(--northline-shell-radius, 24px) !important;
+  background: color-mix(in srgb, var(--color-surface-raised) 92%, transparent) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+:where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .hero-main,
+:where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .brand,
+:where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .title-block,
+:where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .hero-copy-block {
+  min-width: 0 !important;
+  text-align: left !important;
+}
+
+:where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .eyebrow {
+  margin: 0 0 8px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.16em !important;
+  font-size: var(--font-size-xs, 0.75rem) !important;
+  font-weight: var(--font-weight-bold, 700) !important;
+  color: var(--color-brand-secondary) !important;
+  font-family: var(--font-mono, "IBM Plex Mono", ui-monospace, monospace) !important;
+}
+
+:where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .hero-panel h1,
+:where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .hero-main h1,
+:where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .brand h1,
+:where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .title-block h1,
+:where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .hero-copy-block h1 {
+  margin: 0 !important;
+  font-family: var(--font-display, "Fraunces", Georgia, serif) !important;
+  font-size: clamp(2.75rem, 6vw, 3.7rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.04em !important;
+  line-height: 0.98 !important;
+  max-width: 24ch !important;
+}
+
+:where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .hero-copy,
+:where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .brand-note,
+:where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .brand-copy {
+  margin-top: 16px !important;
+  max-width: 58ch !important;
+  color: var(--color-text-secondary) !important;
+  font-size: 1.05rem !important;
+  line-height: 1.6 !important;
+}
+
+:where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .hero-actions {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+}
+
+:where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .hero-note {
+  min-width: 0 !important;
+  width: 100% !important;
+  max-width: 360px !important;
+  display: grid !important;
+  gap: var(--space-3, 12px) !important;
+  padding: var(--space-5, 20px) !important;
+  border-radius: calc(var(--radius-lg, 14px) + var(--space-2, 8px)) !important;
+  background: linear-gradient(180deg, var(--color-brand-secondary) 0%, var(--color-brand-primary) 100%) !important;
+  color: var(--color-text-inverse) !important;
+}
+
+:where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .hero-note-label {
+  margin: 0 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.16em !important;
+  font-size: var(--font-size-xs, 0.75rem) !important;
+  font-weight: var(--font-weight-bold, 700) !important;
+  color: color-mix(in srgb, var(--color-text-inverse) 82%, transparent) !important;
+  font-family: var(--font-mono, "IBM Plex Mono", ui-monospace, monospace) !important;
+}
+
+:where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .hero-note strong {
+  display: block !important;
+  margin-bottom: 10px !important;
+  font-family: var(--font-display, "Fraunces", Georgia, serif) !important;
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+}
+
+:where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .hero-note p:last-child {
+  margin: 0 !important;
+  color: color-mix(in srgb, var(--color-text-inverse) 88%, transparent) !important;
+  font-size: 0.92rem !important;
+  line-height: 1.55 !important;
+}
+
+@media (max-width: 900px) {
+  :where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .hero-panel {
+    grid-template-columns: 1fr !important;
+  }
+
+  :where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .hero-actions {
+    width: 100% !important;
+  }
+
+  :where(.app-shell, .page-shell, .shell, .site-shell, .workspace-shell) .hero-note {
+    max-width: none !important;
+  }
+}
