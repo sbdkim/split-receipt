@@ -1,5 +1,6 @@
 :root {
   --northline-shell-max-width: 1224px;
+  --northline-hero-title-max-width: 18ch;
 }
 
 html,
@@ -55,7 +56,7 @@ body {
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 0.98;
-  max-width: var(--northline-title-max-width);
+  max-width: var(--northline-hero-title-max-width);
 }
 
 .hero-copy {
@@ -278,7 +279,7 @@ select {
   font-weight: 700 !important;
   letter-spacing: -0.04em !important;
   line-height: 0.98 !important;
-  max-width: var(--northline-title-max-width) !important;
+  max-width: var(--northline-hero-title-max-width) !important;
 }
 
 :where(.app-shell, .page-shell, .shell, .site-shell) .hero-copy {
@@ -330,4 +331,5 @@ select {
   font-weight: var(--font-weight-bold) !important;
   border-radius: var(--radius-full) !important;
 }
+
 
