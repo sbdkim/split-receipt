@@ -7,7 +7,7 @@
   --northline-shell-radius: 24px;
   --northline-title-size: clamp(2.75rem, 6vw, 3.7rem);
   --northline-subtitle-size: 1.05rem;
-  --northline-hero-title-max-width: 18ch;
+  --northline-hero-title-max-width: 24ch;
 }
 
 html,
@@ -35,7 +35,7 @@ body {
 
 .hero-panel {
   display: grid;
-  grid-template-columns: minmax(0, 1.7fr) minmax(260px, 0.95fr);
+  grid-template-columns: minmax(0, 2fr) minmax(240px, 0.9fr);
   align-items: end;
   gap: var(--northline-shell-gap);
   margin: 0 0 32px;
@@ -289,6 +289,11 @@ select {
   max-width: var(--northline-hero-title-max-width) !important;
 }
 
+:where(.app-shell, .page-shell, .shell, .site-shell) .hero-panel {
+  grid-template-columns: minmax(0, 2fr) minmax(240px, 0.9fr) !important;
+  align-items: end !important;
+}
+
 :where(.app-shell, .page-shell, .shell, .site-shell) .hero-copy {
   margin: 16px 0 0 !important;
   max-width: 58ch !important;
@@ -303,6 +308,14 @@ select {
   font-weight: var(--font-weight-bold) !important;
   letter-spacing: 0.16em !important;
   text-transform: uppercase !important;
+}
+
+:where(.app-shell, .page-shell, .shell, .site-shell) .hero-note {
+  min-width: 240px !important;
+  max-width: 280px !important;
+  border-radius: calc(var(--radius-lg) + var(--space-2)) !important;
+  background: linear-gradient(180deg, var(--color-brand-secondary) 0%, var(--color-brand-primary) 100%) !important;
+  color: var(--color-text-inverse) !important;
 }
 
 :where(.app-shell, .page-shell, .shell, .site-shell) .hero-note strong {
@@ -338,6 +351,7 @@ select {
   font-weight: var(--font-weight-bold) !important;
   border-radius: var(--radius-full) !important;
 }
+
 
 
 
