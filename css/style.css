@@ -38,7 +38,7 @@ a {
   animation: fade-in 320ms ease;
 }
 
-.page-header {
+.hero-panel {
   display: grid;
   grid-template-columns: minmax(0, 1.7fr) minmax(260px, 0.95fr);
   align-items: end;
@@ -60,7 +60,7 @@ a {
   color: var(--color-brand-secondary);
 }
 
-.page-header h1 {
+.hero-panel h1 {
   margin: 0;
   font-family: var(--font-display);
   font-size: var(--northline-title-size);
@@ -508,7 +508,7 @@ a {
     grid-template-columns: 1fr;
   }
 
-  .page-header {
+  .hero-panel {
     grid-template-columns: 1fr;
   }
 

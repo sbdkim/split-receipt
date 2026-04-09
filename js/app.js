@@ -725,9 +725,9 @@
 
     this.container.innerHTML = '' +
       '<div class="app-shell">' +
-      '  <div class="page-header">' +
+      '  <div class="hero-panel">' +
       '    <div>' +
-      '      <p class="eyebrow">Northline Finance</p>' +
+      '      <p class="eyebrow">Northline</p>' +
       '      <h1>Split Receipt</h1>' +
       '      <p class="hero-copy">Assign each line item, split tax and tip proportionally, and keep the full bill workflow local to this browser.</p>' +
       '    </div>' +
