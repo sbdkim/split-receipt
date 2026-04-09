@@ -727,7 +727,7 @@
       '<div class="app-shell">' +
       '  <div class="hero-panel">' +
       '    <div>' +
-      '      <p class="eyebrow">Northline</p>' +
+      '      <p class="eyebrow">NORTHLINE</p>' +
       '      <h1>Split Receipt</h1>' +
       '      <p class="hero-copy">Assign each line item, split tax and tip proportionally, and keep the full bill workflow local to this browser.</p>' +
       '    </div>' +

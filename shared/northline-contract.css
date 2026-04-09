@@ -1,0 +1,124 @@
+:root {
+  --northline-contract-panel-radius: var(--northline-shell-radius);
+  --northline-contract-border: var(--color-border-subtle);
+}
+
+.app-shell,
+.page-shell,
+.shell,
+.site-shell {
+  width: min(var(--northline-shell-max-width), calc(100% - (var(--northline-shell-padding) * 2)));
+  margin: 0 auto;
+  padding-top: var(--northline-shell-padding);
+}
+
+.hero-panel,
+.topbar,
+.hero,
+.suite-hero,
+.landing-hero-panel {
+  border-radius: var(--northline-contract-panel-radius);
+  border: 1px solid var(--northline-contract-border);
+  background: color-mix(in srgb, var(--color-surface-raised) 92%, transparent);
+  box-shadow: var(--shadow-lg);
+  padding: var(--northline-shell-padding-block) var(--northline-shell-padding-inline);
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-brand-secondary);
+}
+
+.hero-panel h1,
+.topbar h1,
+.hero h1,
+.suite-hero h1,
+.landing-hero-panel h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--northline-title-size);
+  line-height: 0.98;
+  max-width: var(--northline-title-max-width);
+}
+
+.hero-copy,
+.subtitle {
+  margin-top: var(--space-4);
+  max-width: 58ch;
+  color: var(--color-text-secondary);
+  font-size: var(--northline-subtitle-size);
+  line-height: var(--line-height-normal);
+}
+
+.hero-note,
+.tool-meta {
+  border-radius: calc(var(--radius-lg) + var(--space-2));
+  border: 1px solid var(--color-border-subtle);
+  background: color-mix(in srgb, var(--color-surface-sunken) 70%, var(--color-surface-raised));
+}
+
+button,
+input,
+select,
+textarea,
+.button,
+.primary-button,
+.ghost-button,
+.download-button,
+.copy-button,
+.icon-button,
+.utility-button {
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-default);
+  font-family: var(--font-body);
+}
+
+button,
+.button,
+.primary-button,
+.download-button {
+  background: linear-gradient(135deg, var(--color-brand-secondary) 0%, var(--color-brand-primary) 100%);
+  color: var(--color-text-inverse);
+  border-color: transparent;
+  font-weight: var(--font-weight-bold);
+}
+
+button:hover,
+.button:hover,
+.primary-button:hover,
+.download-button:hover,
+.copy-button:hover,
+.ghost-button:hover,
+.icon-button:hover,
+.utility-button:hover {
+  transform: translateY(-1px);
+}
+
+.panel,
+.summary-cell,
+.feature-card,
+.results-panel,
+.editor-panel,
+.card,
+.list-card,
+.stat-card,
+.history-card {
+  border-radius: calc(var(--radius-lg) + var(--space-1));
+  border: 1px solid var(--color-border-subtle);
+  background: color-mix(in srgb, var(--color-surface-raised) 94%, transparent);
+}
+
+@media (max-width: 900px) {
+  .hero-panel,
+  .topbar,
+  .hero,
+  .suite-hero,
+  .landing-hero-panel {
+    grid-template-columns: 1fr;
+  }
+}
