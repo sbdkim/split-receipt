@@ -735,10 +735,6 @@
       '      <p class="hero-note-label">Local-first</p>' +
       '      <strong>Cent-safe split summary</strong>' +
       '      <p>Keep the whole bill in this browser and copy a clean payout summary when the split is ready.</p>' +
-      '      <div class="page-actions">' +
-      '        <button type="button" class="button-secondary" data-action="copy-summary">Copy summary</button>' +
-      '        <button type="button" class="button-ghost" data-action="reset">Reset bill</button>' +
-      '      </div>' +
       '    </div>' +
       '  </div>' +
       messageMarkup +
