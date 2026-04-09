@@ -311,8 +311,9 @@ select {
 }
 
 :where(.app-shell, .page-shell, .shell, .site-shell) .hero-note {
-  min-width: 240px !important;
-  max-width: 280px !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  max-width: 360px !important;
   border-radius: calc(var(--radius-lg) + var(--space-2)) !important;
   background: linear-gradient(180deg, var(--color-brand-secondary) 0%, var(--color-brand-primary) 100%) !important;
   color: var(--color-text-inverse) !important;
@@ -351,6 +352,17 @@ select {
   font-weight: var(--font-weight-bold) !important;
   border-radius: var(--radius-full) !important;
 }
+
+@media (max-width: 900px) {
+  :where(.app-shell, .page-shell, .shell, .site-shell) .hero-panel {
+    grid-template-columns: 1fr !important;
+  }
+
+  :where(.app-shell, .page-shell, .shell, .site-shell) .hero-note {
+    max-width: none !important;
+  }
+}
+
 
 
 
