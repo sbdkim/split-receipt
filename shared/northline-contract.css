@@ -260,3 +260,74 @@ select {
     flex-direction: column;
   }
 }
+
+/* Locked cross-repo typography and shell rhythm contract. */
+:where(.app-shell, .page-shell, .shell, .site-shell) .eyebrow {
+  font-family: var(--font-mono) !important;
+  font-size: var(--font-size-xs) !important;
+  font-weight: var(--font-weight-bold) !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  margin: 0 0 8px !important;
+}
+
+:where(.app-shell, .page-shell, .shell, .site-shell) .hero-panel h1 {
+  margin: 0 !important;
+  font-family: var(--font-display) !important;
+  font-size: var(--northline-title-size) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.04em !important;
+  line-height: 0.98 !important;
+  max-width: var(--northline-title-max-width) !important;
+}
+
+:where(.app-shell, .page-shell, .shell, .site-shell) .hero-copy {
+  margin: 16px 0 0 !important;
+  max-width: 58ch !important;
+  font-size: var(--northline-subtitle-size) !important;
+  font-weight: var(--font-weight-regular) !important;
+  line-height: 1.6 !important;
+}
+
+:where(.app-shell, .page-shell, .shell, .site-shell) .hero-note-label {
+  font-family: var(--font-mono) !important;
+  font-size: var(--font-size-xs) !important;
+  font-weight: var(--font-weight-bold) !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+}
+
+:where(.app-shell, .page-shell, .shell, .site-shell) .hero-note strong {
+  font-family: var(--font-display) !important;
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+}
+
+:where(.app-shell, .page-shell, .shell, .site-shell) .hero-note p:last-child {
+  font-size: 0.92rem !important;
+  font-weight: var(--font-weight-regular) !important;
+  line-height: 1.55 !important;
+}
+
+:where(.app-shell, .page-shell, .shell, .site-shell) .page-footer {
+  margin-top: var(--space-8) !important;
+  padding-top: 18px !important;
+  font-size: 0.84rem !important;
+  line-height: 1.5 !important;
+}
+
+:where(.app-shell, .page-shell, .shell, .site-shell) button,
+:where(.app-shell, .page-shell, .shell, .site-shell) .button,
+:where(.app-shell, .page-shell, .shell, .site-shell) .button-primary,
+:where(.app-shell, .page-shell, .shell, .site-shell) .primary-button,
+:where(.app-shell, .page-shell, .shell, .site-shell) .button-secondary,
+:where(.app-shell, .page-shell, .shell, .site-shell) .secondary-button,
+:where(.app-shell, .page-shell, .shell, .site-shell) .button-ghost,
+:where(.app-shell, .page-shell, .shell, .site-shell) .ghost-button {
+  font-family: var(--font-body) !important;
+  font-size: var(--font-size-base) !important;
+  font-weight: var(--font-weight-bold) !important;
+  border-radius: var(--radius-full) !important;
+}
+
